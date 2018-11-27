@@ -14,7 +14,7 @@ FastSMT  <a href="https://www.sri.inf.ethz.ch/"><img width="100" alt="portfolio_
 $ git clone https://gitlab.inf.ethz.ch/bielikp/smtstrategies # TODO(Mislav): Replace this with the actual link
 $ virtualenv -p python3.5 --system-site-packages venv
 $ source venv/bin/activate
-(venv) $ python setup.py install
+(venv) $ python setup.py
 ```
 
 Our tool is built on top of Z3 SMT solver (https://github.com/Z3Prover/z3).
@@ -104,6 +104,7 @@ Here is an example of the full command:
                 --num_iters 10 \
                 --iters_inc 10 \
                 --pop_size 1 \
+                --eval_dir eval/synthesis/ \
                 --smt_batch_size 100 \
                 --full_pass 10 \
                 --num_threads 30 \
