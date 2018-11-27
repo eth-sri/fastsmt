@@ -1,0 +1,67 @@
+{
+    "main_model": "apprentice",
+    "explore_model": "random",
+    "exploration": {
+	"enabled": true,
+        "init_explore_rate": 1,
+        "explore_decay": 0.99,
+        "min_explore_rate": 0.1
+    },
+    "pop_size": 1,
+    "pruned": true,
+    "models": {
+        "apprentice": {
+	    "min_train_data": 50,
+	    "type": "bow",
+	    "adam_lr": 0.0001,
+	    "epochs": 100,
+	    "mini_batch_size": 32,
+	    "early_stopping_inc": 3,
+	    "valid_split": 0.8,
+	    "min_valid_samples": 1000000
+        }
+    },
+    "tactics_config": {
+        "all_tactics": [
+            "simplify",
+            "smt",
+            "bit-blast",
+            "bv1-blast",
+            "solve-eqs",
+            "aig",
+            "qfnra-nlsat",
+            "sat",
+            "max-bv-sharing",
+            "reduce-bv-size",
+            "purify-arith",
+            "propagate-values",
+            "elim-uncnstr",
+            "ackermannize_bv"
+        ],
+        "allowed_params": {
+            "simplify": {
+                "boolean": [
+                    "elim_and",
+                    "blast_distinct",
+                    "push_ite_bv",
+                    "som",
+                    "pull_cheap_ite",
+                    "hoist_mul",
+                    "local_ctx",
+                    "flat"
+                ]
+            },
+            "propagate-values": {
+                "boolean": [
+                    "push_ite_bv"
+                ]
+            },
+            "aig": {
+                "boolean": [
+                    "aig_per_assertion"
+                ]
+            }
+        }
+    }
+}
+

@@ -1,0 +1,68 @@
+{
+    "main_model": "apprentice",
+    "explore_model": "random",
+    "exploration": {
+	"enabled": true,
+        "init_explore_rate": 1,
+        "explore_decay": 0.99,
+        "min_explore_rate": 0.1
+    },
+    "pop_size": 1,
+    "pruned": true,
+    "models": {
+        "apprentice": {
+	    "type": "bow",
+	    "adam_lr": 0.0001,
+	    "epochs": 100,
+	    "mini_batch_size": 32,
+	    "early_stopping_inc": 3,
+	    "min_train_data": 50,
+	    "early_stopping_inc": 3,
+	    "valid_split": 0.8,
+	    "min_valid_samples": 1000000
+        }
+    },
+    "tactics_config": {
+        "all_tactics": [
+            "simplify",
+            "smt",
+	    "bit-blast",
+            "propagate-values",
+	    "ctx-simplify",
+            "elim-uncnstr",
+            "solve-eqs",
+	    "max-bv-sharing",
+	    "nla2bv",
+	    "qfnra-nlsat"
+	],
+	"allowed_params": {
+	    "simplify": {
+		"boolean": [
+		    "elim_and",
+		    "som",
+		    "blast_distinct",
+		    "flat",
+		    "hi_div0",
+		    "local_ctx",
+		    "hoist_mul"
+		]
+	    },
+	    "qfnra-nlsat": {
+		"boolean": [
+		    "inline_vars",
+		    "factor"
+		],
+		"integer": [
+		    ["seed", 50, 1000]
+		]
+	    },
+	    "nla2bv": {
+		"integer": [
+		    ["nla2bv_max_bv_size", 0, 100]
+		]
+	    }
+
+	}
+    }
+}
+

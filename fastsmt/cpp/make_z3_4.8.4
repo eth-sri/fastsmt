@@ -1,0 +1,7 @@
+goal_runner: goal_runner_new.cpp
+	g++ -O3 goal_runner_new.cpp -o goal_runner -lz3 -std=c++11
+
+clean:
+	rm goal_runner || true
+
+all: clean goal_runner
