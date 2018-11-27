@@ -130,6 +130,10 @@ In order to combine the synthesized strategies into a final strategy in SMT2 for
 
 For the full list of hyperaparameters and their meaning please consult our paper.
 
+## Experiments
+
+In order to reproduce results from our paper, consult README file in `fastsmt/experiments` subfolder.
+
 ## Configuration
 
 In this section we describe how to configure our system using JSON configuraton file.
