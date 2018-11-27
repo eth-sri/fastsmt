@@ -2,7 +2,6 @@ import logging
 import numpy as np
 import time
 import torch
-import torchfold
 import torch.multiprocessing as mp
 import torch.nn as nn
 import torch.nn.functional as F
