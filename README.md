@@ -11,10 +11,10 @@ FastSMT  <a href="https://www.sri.inf.ethz.ch/"><img width="100" alt="portfolio_
 (Optional) Setup python virtual environment. The code is tested with python version 3.5:
 
 ```bash
-$ git clone https://gitlab.inf.ethz.ch/bielikp/smtstrategies # TODO(Mislav): Replace this with the actual link
-$ virtualenv -p python3.5 --system-site-packages venv
+$ git clone git@gitlab.inf.ethz.ch:OU-VECHEV/fastsmt.git # TODO(Mislav): Replace this with the actual link
+$ virtualenv -p python3 --system-site-packages venv
 $ source venv/bin/activate
-(venv) $ python setup.py
+(venv) $ python setup.py install
 ```
 
 Our tool is built on top of Z3 SMT solver (https://github.com/Z3Prover/z3).
@@ -26,7 +26,9 @@ the subdirectory `experiments` for the older version (we did not test with `4.8.
 ```bash
 $ git clone https://github.com/Z3Prover/z3.git z3
 $ cd z3
-$ git checkout 5651d00751a1eb40b94db86f00cb7d3ec9711c4d # (optional) checkout Z3 version 4.6.2 that we tested against
+
+# (Optional) checkout Z3 version 4.6.2 that we tested against
+# $ git checkout 5651d00751a1eb40b94db86f00cb7d3ec9711c4d 
 
 # To generate correct python bindings you need to activate the virtual env before Z3 compilation
 $ source ../venv/bin/activate
@@ -39,8 +41,8 @@ $ source ../venv/bin/activate
 
 Finally, compile C++ runner: 
 ```bash
-$ cd smtstrategies/cpp
-$ make -f make_z3_4.6.2 # make -f make_z3_4.8.4 if you built Z3 from master  
+$ cd fastsmt/cpp
+$ make -f make_z3_4.8.4 # make -f make_z3_4.6.2 if you built Z3 4.6.2
 $ cd ..
 ```
 
@@ -98,7 +100,6 @@ Here is an example of the full command:
 
 ```bash
 (venv) $ python synthesis/synthesis.py experiments/configs/leipzig/config_apprentice.json \
-                --eval_dir eval/synthesis/ \
                 --benchmark_dir examples/QF_NIA/leipzig/ \
                 --max_timeout 10 \
                 --num_iters 10 \
