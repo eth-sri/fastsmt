@@ -14,6 +14,7 @@ FastSMT  <a href="https://www.sri.inf.ethz.ch/"><img width="100" alt="portfolio_
 $ git clone git@gitlab.inf.ethz.ch:OU-VECHEV/fastsmt.git # TODO(Mislav): Replace this with the actual link
 $ virtualenv -p python3 --system-site-packages venv
 $ source venv/bin/activate
+$ cd fastsmt
 (venv) $ python setup.py install
 ```
 
