@@ -9,7 +9,7 @@ import time
 
 from fastsmt.utils.parallel_run import run_ordered_tasks_and_merge_outputs, get_merge_files_callback
 from fastsmt.language.objects import *
-import smtstrategies.utils.test as utils_test
+import fastsmt.utils.test as utils_test
 
 def exec_test(test, out_file):
     try:

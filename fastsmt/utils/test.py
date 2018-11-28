@@ -6,7 +6,7 @@ from fastsmt.language.objects import *
 from fastsmt.utils.constants import *
 from fastsmt.utils.runners import *
 from fastsmt.utils.tokenizer import Tokenizer
-import smtstrategies.utils as utils
+import fastsmt.utils as utils
 
 INF = 10**20
 
