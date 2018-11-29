@@ -97,9 +97,7 @@ Here is an example of the full command (execution should take few minutes):
                 --experiment_name leipzig_example
 ```
 
-Results of the synthesis are saved in `eval_dir` which contains synthesized strategies in each of the passes, for both training and validation dataset.
-As a guideline for setting the parameters of the learning procedure, we suggest to look at our experiments in the `experiments` subfolder.
-In order to combine the synthesized strategies into a final strategy in SMT2 format use (running the script should take some time):
+Learned strategies are saved in directory given as `eval_dir`. As a guideline for setting the parameters of the learning procedure, we suggest to look at our experiments in the `experiments` subfolder. In order to synthesize a final strategy from learned strategies use (running the script should take some time):
 
 ```bash
 (venv) $ python synthesis/multi/multi_synthesis.py \
