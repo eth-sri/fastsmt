@@ -30,7 +30,22 @@ You can find strategies resulting from our experiments in `final_strategies` sub
 
 ## Learning 
 
-Note that you need FastText set up properly in order to run bilinear model and PyTorch to run neural network model. Please consult our setup instructions on how to do this. In order to train all models and reproduce our experiment on Sage2 benchmark use the following command:
+Note that you need FastText set up properly in order to run bilinear model. Please run the following command which will create the FastText binary and also all relevant libraries (shared, static, PIC):
+
+```bash
+$ git clone https://github.com/facebookresearch/fastText.git
+$ cd fastText
+$ git checkout a5d22aba45f38c12d195ecc6c3e448aa3690fbbd
+$ mkdir build && cd build && cmake ..
+$ make 
+$ cd ..
+# FastText bindings for Python
+$ pip install .
+$ cd ..
+```
+
+After that, add FastText to PYTHONPATH.
+In order to train all models and reproduce our experiment on Sage2 benchmark use the following command:
 
 ```bash
 (venv) $ ./experiments/runners/run_sage2.sh

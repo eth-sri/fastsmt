@@ -1,10 +1,8 @@
 FastSMT  <a href="https://www.sri.inf.ethz.ch/"><img width="100" alt="portfolio_view" align="right" src="http://safeai.ethz.ch/img/sri-logo.svg"></a>
 =============================================================================================================
 
-<a href="http://fastsmt.ethz.ch/"><img width="700" alt="portfolio_view" align="center" src="http://fastsmt.ethz.ch/img/cover.png">
-
-
-- [ ] TODO: Write short description of the project, link to the paper, etc.
+FastSMT is a tool to augment your SMT solver by learning to optimize its performance for your dataset of formulas.
+Our tool is built on top of Z3 SMT solver (https://github.com/Z3Prover/z3). Currently we support Z3 4.6.2.
 
 ## Setup Instructions
 
@@ -18,18 +16,13 @@ $ cd fastsmt
 (venv) $ python setup.py install
 ```
 
-Our tool is built on top of Z3 SMT solver (https://github.com/Z3Prover/z3).
-All our experiments were ran using `Z3 4.6.2` which was latest version of Z3 solver at the time. 
-We also support `Z3 4.8.4` although it was not tested as thoroughly as `Z3 4.6.2` (note that there are few differences in setup).
-However, we only guarantee reproducibility of results for experiments in 
-the subdirectory `experiments` for the older version (we did not test with `4.8.4`)
 
 ```bash
 $ git clone https://github.com/Z3Prover/z3.git z3
 $ cd z3
 
-# (Optional) checkout Z3 version 4.6.2 that we tested against
-# $ git checkout 5651d00751a1eb40b94db86f00cb7d3ec9711c4d 
+# Checkout Z3 version 4.6.2 that we tested against
+$ git checkout 5651d00751a1eb40b94db86f00cb7d3ec9711c4d 
 
 # To generate correct python bindings you need to activate the virtual env before Z3 compilation
 $ source ../venv/bin/activate
@@ -43,24 +36,10 @@ $ source ../venv/bin/activate
 Finally, compile C++ runner: 
 ```bash
 $ cd fastsmt/cpp
-$ make -f make_z3_4.8.4 # make -f make_z3_4.6.2 if you built Z3 4.6.2
+$ make -f make_z3_4.6.2
 $ cd ..
 ```
 
-Optionally, compile and install FastText. This is only needed if you want to run with bilinear model. Then install python bindings and add the folder to PYTHONPATH. 
-This will create the FastText binary and also all relevant libraries (shared, static, PIC):
-
-```bash
-$ git clone https://github.com/facebookresearch/fastText.git
-$ cd fastText
-$ git checkout a5d22aba45f38c12d195ecc6c3e448aa3690fbbd
-$ mkdir build && cd build && cmake ..
-$ make 
-$ cd ..
-# FastText bindings for Python
-$ pip install .
-$ cd ..
-```
 
 
 ## Creating the dataset
