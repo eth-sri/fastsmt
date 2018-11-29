@@ -98,8 +98,8 @@ Here is an example of the full command (execution should take few minutes):
 ```
 
 Results of the synthesis are saved in `eval_dir` which contains synthesized strategies in each of the passes, for both training and validation dataset.
-
-In order to combine the synthesized strategies into a final strategy in SMT2 format use:
+As a guideline for setting the parameters of the learning procedure, we suggest to look at our experiments in the `experiments` subfolder.
+In order to combine the synthesized strategies into a final strategy in SMT2 format use (running the script should take some time):
 
 ```bash
 (venv) $ python synthesis/multi/multi_synthesis.py \
@@ -110,10 +110,8 @@ In order to combine the synthesized strategies into a final strategy in SMT2 for
          --strategy_file output_strategy.txt \
          --leaf_size 4 \
          --num_strategies 5 \
-         --input_file eval/synthesis/leipzig_example/train/10/strategies.txt
+         --input_file eval/synthesis/leipzig_example/train/2/strategies.txt
 ```
-
-For the full list of hyperaparameters and their meaning please consult our paper.
 
 ## Additional information
 
@@ -131,7 +129,7 @@ You can view the plots at: `http://127.0.0.1:6006` where `6006` is the deafult p
 
 ## Validation
 
-In order to evaluate final strategy synthesized by our system we provide a validation script. For an input, this script receives dataset with SMT2 formulas and a strategy. It runs Z3 solver with and without using givem strategy and outputs the performance comparison.
+In order to evaluate final strategy synthesized by our system we provide a validation script. For an input, this script receives dataset with SMT2 formulas and a strategy. It runs Z3 solver with and without using given strategy and outputs the performance comparison (in terms of number of solved formulas and runtime).
 
 ```bash
 (venv) $ python scripts/py/validate.py \
@@ -140,6 +138,10 @@ In order to evaluate final strategy synthesized by our system we provide a valid
         --max_timeout 10 \
         --batch_size 4
 ```
+
+
+
+
 
 
 
