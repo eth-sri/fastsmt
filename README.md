@@ -81,6 +81,7 @@ Help menu with information about all possible arguments can be accessed with:
 (venv) $ python synthesis/learning.py -h
 ```
 
+In this toy example, we are going to load formulas from leipzig benchmark and run our procedure to synthesize best strategy for every formula. Concretely, we will first search randomly for 5 iterations, then train the neural network model and search for 5 more iterations (this time guided by the model). 
 Here is an example of the full command (execution should take few minutes):
 
 ```bash
@@ -97,7 +98,16 @@ Here is an example of the full command (execution should take few minutes):
                 --experiment_name leipzig_example
 ```
 
-Learned strategies are saved in directory given as `eval_dir`. As a guideline for setting the parameters of the learning procedure, we suggest to look at our experiments in the `experiments` subfolder. In order to synthesize a final strategy from learned strategies use (running the script should take some time):
+Learned strategies are saved in directory given as `eval_dir`. As a guideline for setting the parameters of the learning procedure, we suggest to look at our experiments in the `experiments` subfolder. 
+
+Now, best strategies are saved in `eval/synthesis/leipzig_example/train/2/strategies.txt`.
+For the sake of this experiment, to see the results faster, we will sample only 10 strategies from the list of best strategies:
+
+```bash
+cat eval/synthesis/leipzig_example/train/2/strategies.txt | shuf | head -10 > sample_strategies.txt
+```
+
+You can also use `eval/synthesis/leipzig_example/train/2/strategies.txt` instead of `sample_strategies.txt` in the following command, but be prepared to wait more. Next, we are going to synthesize a final strategy in SMT2 format from these 10 learned strategies (running the script should take some time):
 
 ```bash
 (venv) $ python synthesis/multi/multi_synthesis.py \
@@ -108,7 +118,21 @@ Learned strategies are saved in directory given as `eval_dir`. As a guideline fo
          --strategy_file output_strategy.txt \
          --leaf_size 4 \
          --num_strategies 5 \
-         --input_file eval/synthesis/leipzig_example/train/2/strategies.txt
+         --input_file sample_strategies.txt
+```
+
+After this command is finished you can find the synthesized strategy in SMT2 format in file `output_strategy.txt`. This strategy can be passed to Z3 solver as explained in: https://rise4fun.com/z3/tutorial/strategies
+
+## Validation
+
+In order to evaluate final strategy synthesized by our system we provide a validation script. For an input, this script receives dataset with SMT2 formulas and a strategy. It runs Z3 solver with and without using given strategy and outputs the performance comparison (in terms of number of solved formulas and runtime).
+
+```bash
+(venv) $ python scripts/py/validate.py \
+        --strategy_file output_strategy.txt \
+        --benchmark_dir examples/QF_NIA/leipzig/test \
+        --max_timeout 10 \
+        --batch_size 4
 ```
 
 ## Additional information
@@ -125,17 +149,7 @@ We use TensorboardX (https://github.com/lanpa/tensorboardX) to provide integrati
 
 You can view the plots at: `http://127.0.0.1:6006` where `6006` is the deafult port to which Tensorboard is logging the data.
 
-## Validation
 
-In order to evaluate final strategy synthesized by our system we provide a validation script. For an input, this script receives dataset with SMT2 formulas and a strategy. It runs Z3 solver with and without using given strategy and outputs the performance comparison (in terms of number of solved formulas and runtime).
-
-```bash
-(venv) $ python scripts/py/validate.py \
-        --strategy_file output_strategy.txt \
-        --benchmark_dir examples/QF_NIA/leipzig/test \
-        --max_timeout 10 \
-        --batch_size 4
-```
 
 
 
