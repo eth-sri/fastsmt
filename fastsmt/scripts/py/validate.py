@@ -148,17 +148,18 @@ def main():
             print('Both solved:',len(speedups))
             print('Only learned solved: ',only_learned)
             print('Only Z3 solved: ',only_z3)
+            print('-> Speedup (number of operations):')
             if len(speedups) > 0:
                 speedups.sort()
-                print('[R] Average speedup: ',np.mean(speedups))
+                print('Average speedup: ',np.mean(speedups))
                 for p in PER:
-                    print('[R] Percentile ',p,': ',speedups[int(p*len(speedups))])
+                    print('Percentile ',p,': ',speedups[int(p*len(speedups))])
+            print('-> Speedup (wall clock time):')
             if len(speedups_real) > 0:
                 speedups_real.sort()
-                print('[T] Average speedup: ',np.mean(speedups_real))
+                print('Average speedup: ',np.mean(speedups_real))
                 for p in PER:
-                    print('[T] Percentile ',p,': ',speedups_real[int(p*len(speedups_real))]
-)
+                    print('Percentile ',p,': ',speedups_real[int(p*len(speedups_real))])
 
 if __name__ == '__main__':
     main()
