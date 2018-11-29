@@ -73,13 +73,13 @@ It receives configuration for the synthesis procedure, benchmark directory and o
 Help menu with information about all possible arguments can be accessed with:
 
 ```bash 
-(venv) $ python synthesis/synthesis.py -h
+(venv) $ python synthesis/learning.py -h
 ```
 
 Here is an example of the full command:
 
 ```bash
-(venv) $ python synthesis/synthesis.py experiments/configs/leipzig/config_apprentice.json \
+(venv) $ python synthesis/learning.py experiments/configs/leipzig/config_apprentice.json \
                 --benchmark_dir examples/QF_NIA/leipzig/ \
                 --max_timeout 10 \
                 --num_iters 10 \
