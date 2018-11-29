@@ -16,6 +16,7 @@ $ cd fastsmt
 (venv) $ python setup.py install
 ```
 
+Install and compile Z3 4.6.2 (with Python bindings):
 
 ```bash
 $ git clone https://github.com/Z3Prover/z3.git z3
@@ -29,7 +30,7 @@ $ source ../venv/bin/activate
 (venv) $ python scripts/mk_make.py --python
 (venv) $ cd build
 (venv) $ make # (optional) use `make -j4` where 4 is the number of threads used to compile Z3, will likely take couple of minutes
-(venv) $ make install
+(venv) $ sudo make install
 (venv) $ cd ../..
 ``` 
 
