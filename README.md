@@ -173,6 +173,35 @@ We use TensorboardX (https://github.com/lanpa/tensorboardX) to provide integrati
 
 You can view the plots at: `http://127.0.0.1:6006` where `6006` is the default port to which Tensorboard is logging the data.
 
+Citing This Framework
+---------------------
+
+```
+@incollection{NIPS2018_8233,
+  title = {Learning to Solve SMT Formulas},
+  author = {Balunovic, Mislav and Bielik, Pavol and Vechev, Martin},
+  booktitle = {Advances in Neural Information Processing Systems 31},
+  editor = {S. Bengio and H. Wallach and H. Larochelle and K. Grauman and N. Cesa-Bianchi and R. Garnett},
+  pages = {10337--10348},
+  year = {2018},
+  publisher = {Curran Associates, Inc.},
+  url = {http://papers.nips.cc/paper/8233-learning-to-solve-smt-formulas.pdf}
+}
+```
+
+Contributors
+------------
+
+* [Mislav Balunović](https://www.sri.inf.ethz.ch/people/mislav) - bmislav@ethz.ch
+* [Pavol Bielik](https://www.sri.inf.ethz.ch/people/pavol) - pavol.bielik@inf.ethz.ch
+* [Martin Vechev](https://www.sri.inf.ethz.ch/people/martin) - martin.vechev@inf.ethz.ch
+
+License and Copyright
+---------------------
+
+* Copyright (c) 2018 [Secure, Reliable, and Intelligent Systems Lab (SRI), ETH Zurich](https://www.sri.inf.ethz.ch/)
+* Licensed under the [Apache License](http://www.apache.org/licenses/)
+
 
 
 
