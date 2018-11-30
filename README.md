@@ -6,11 +6,36 @@ Our tool is built on top of Z3 SMT solver (https://github.com/Z3Prover/z3). Curr
 
 ## Setup Instructions
 
-(Optional) Setup python virtual environment. The code is tested with python version 3.5:
+Clone this repository
 
 ```bash
 $ git clone git@gitlab.inf.ethz.ch:OU-VECHEV/fastsmt.git # TODO(Mislav): Replace this with the actual link
 $ cd fastsmt
+```
+
+Download Z3 4.6.2
+
+```bash
+$ git clone https://github.com/Z3Prover/z3.git z3
+$ cd z3
+
+# Checkout Z3 version 4.6.2 that we tested against
+$ git checkout 5651d00751a1eb40b94db86f00cb7d3ec9711c4d 
+```
+
+Install and compile Z3 4.6.2 (with cpp bindings):
+
+```bash
+$ python scripts/mk_make.py 
+$ cd build
+$ make # (optional) use `make -j4` where 4 is the number of threads used to compile Z3, will likely take couple of minutes
+$ sudo make install
+$ cd ../..
+``` 
+
+Setup python virtual environment. The code is tested with python version 3.5:
+
+```bash
 $ virtualenv -p python3 --system-site-packages venv
 $ source venv/bin/activate
 (venv) $ python setup.py install
@@ -19,12 +44,7 @@ $ source venv/bin/activate
 Install and compile Z3 4.6.2 (with Python bindings):
 
 ```bash
-(venv) $ git clone https://github.com/Z3Prover/z3.git z3
 (venv) $ cd z3
-
-# Checkout Z3 version 4.6.2 that we tested against
-(venv) $ git checkout 5651d00751a1eb40b94db86f00cb7d3ec9711c4d 
-
 # To generate correct python bindings make sure you activated the virtual env before Z3 compilation
 (venv) $ python scripts/mk_make.py --python
 (venv) $ cd build
