@@ -104,6 +104,7 @@ def main():
 
     only_learned = 0
     only_z3 = 0
+    none_solved = 0
 
     for root, directories, filenames in os.walk(args.benchmark_dir):
         for i in range(0, len(filenames), args.batch_size):
@@ -152,6 +153,8 @@ def main():
                     if res1 is None:
                         only_z3 += 1
                     okd += 1
+                if res1 is None and res2 is None:
+                    none_solved += 1
 
                 if res1 is not None and res2 is not None:
                     speedup = rlimit2 / float(rlimit1)
@@ -164,6 +167,7 @@ def main():
             print('Both solved:',len(speedups))
             print('Only learned solved: ',only_learned)
             print('Only Z3 solved: ',only_z3)
+            print('None solved:',none_solved)
             print('-> Speedup (number of operations):')
             if len(speedups) > 0:
                 speedups.sort()
