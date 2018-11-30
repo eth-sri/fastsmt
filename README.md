@@ -6,7 +6,7 @@ Our tool is built on top of Z3 SMT solver (https://github.com/Z3Prover/z3). Curr
 
 # Website
 
-Website of the project is available at [fastsmt.ethz.ch](fastsmt.ethz.ch)
+Website of the project is available at [fastsmt.ethz.ch](http://fastsmt.ethz.ch)
 
 ## Setup Instructions
 
