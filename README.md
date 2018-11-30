@@ -173,7 +173,7 @@ We use TensorboardX (https://github.com/lanpa/tensorboardX) to provide integrati
 
 You can view the plots at: `http://127.0.0.1:6006` where `6006` is the default port to which Tensorboard is logging the data.
 
-Citing This Framework
+Citing this work
 ---------------------
 
 ```
