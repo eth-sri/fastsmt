@@ -13,7 +13,7 @@ Website of the project is available at [fastsmt.ethz.ch](fastsmt.ethz.ch)
 Clone this repository
 
 ```bash
-$ git clone git@gitlab.inf.ethz.ch:OU-VECHEV/fastsmt.git # TODO(Mislav): Replace this with the actual link
+$ git clone https://github.com/eth-sri/fastsmt.git
 $ cd fastsmt
 ```
 
