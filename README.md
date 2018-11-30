@@ -2,7 +2,7 @@ FastSMT  <a href="https://www.sri.inf.ethz.ch/"><img width="100" alt="portfolio_
 =============================================================================================================
 
 FastSMT is a tool to augment your SMT solver by learning to optimize its performance for your dataset of formulas.
-Our tool is built on top of Z3 SMT solver (https://github.com/Z3Prover/z3). Currently we support Z3 4.6.2.
+Our tool is built on top of Z3 SMT solver (https://github.com/Z3Prover/z3). Currently we support Z3 4.6.2 and we the tool is tested on Ubuntu 16.04.
 
 ## Setup Instructions
 
