@@ -10,9 +10,9 @@ Our tool is built on top of Z3 SMT solver (https://github.com/Z3Prover/z3). Curr
 
 ```bash
 $ git clone git@gitlab.inf.ethz.ch:OU-VECHEV/fastsmt.git # TODO(Mislav): Replace this with the actual link
+$ cd fastsmt
 $ virtualenv -p python3 --system-site-packages venv
 $ source venv/bin/activate
-$ cd fastsmt
 (venv) $ python setup.py install
 ```
 
