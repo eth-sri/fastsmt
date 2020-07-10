@@ -10,7 +10,7 @@ setup(name='fastsmt',
       install_requires=[
           'numpy',
           'scipy',
-          'scikit-learn',
+          'scikit-learn==0.20',
           'torch',
           'matplotlib',
           'tensorboardX',
