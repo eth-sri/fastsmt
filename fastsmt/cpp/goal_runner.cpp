@@ -42,9 +42,9 @@ tactic fromString(context& ctx, std::string s) {
     return tactic(ctx, s.substr(7, (int)s.size() - 8).c_str());
   } else if (s.find("AndThen(") == 0) {
     auto tokens = split(s.substr(8, (int)s.size() - 9), ",");
-    
+
     tactic ret = fromString(ctx, tokens[0]);
-    
+
     for (size_t i = 1; i < tokens.size(); ++i) {
       auto tactic = fromString(ctx, tokens[i]);
       ret = ret & tactic;
@@ -79,7 +79,7 @@ tactic fromString(context& ctx, std::string s) {
 int get_rlimit(solver s) {
   auto stats = s.statistics();
   auto sz = stats.size();
-  
+
   for (size_t i = 0; i < sz; ++i) {
     if (stats.key(i) == "rlimit count") {
       return stats.uint_value(i);
@@ -91,25 +91,24 @@ int get_rlimit(solver s) {
 
 int main(int argc, char* argv[]) {
   context ctx;
-  
+
   char* strategy = argv[1];
   char* smt_input_file = argv[2];
   char* smt_out_file = argv[3];
-  
-  Z3_ast a = Z3_parse_smtlib2_file(ctx, smt_input_file, 0, 0, 0, 0, 0, 0);    
-  expr f(ctx, a);
-
-  tactic t = fromString(ctx, strategy);
-
-  auto rlimit_before = get_rlimit(t.mk_solver());
-
-  goal g(ctx);
-  g.add(f);
-  auto old_hash = g.as_expr().hash();
-
-  clock_t begin = clock();
 
   try {
+
+    // see https://github.com/Z3Prover/z3/issues/2798
+    expr f(ctx, mk_and(ctx.parse_file(smt_input_file)));
+    tactic t = fromString(ctx, strategy);
+
+    auto rlimit_before = get_rlimit(t.mk_solver());
+
+    goal g(ctx);
+    g.add(f);
+    auto old_hash = g.as_expr().hash();
+
+    clock_t begin = clock();
     apply_result r = t(g);
     assert(r.size() == 1); // assert that there is only 1 resulting goal
     goal new_goal = r[0];
@@ -145,7 +144,7 @@ int main(int argc, char* argv[]) {
     double elapsed_sec = (double)(end - begin) / CLOCKS_PER_SEC;
 
     std::cout << res << " " << rlimit << " " << old_hash << " " << new_hash << " " << elapsed_sec << std::endl;
-    
+
     std::vector<probe> probes;
     probes.push_back(probe(ctx, "num-consts"));
     probes.push_back(probe(ctx, "num-exprs"));
@@ -162,7 +161,7 @@ int main(int argc, char* argv[]) {
     probes.push_back(probe(ctx, "num-bv-consts"));
     probes.push_back(probe(ctx, "num-arith-consts"));
     probes.push_back(probe(ctx, "is-qfbv-eq"));
-  
+
     for (size_t i = 0; i < probes.size(); ++i) {
       if (i != 0) {
 	std::cout << " ";
@@ -174,6 +173,6 @@ int main(int argc, char* argv[]) {
     std::cout << -1 << std::endl;
     return 0;
   }
-  
+
   return 0;
 }

@@ -22,9 +22,9 @@ import tempfile
 import time
 
 try:
-    import fastText
+    import fasttext
 except ImportError:
-    logging.warn('fastText could not be imported (only needed to run fastText model).')
+    logging.warn('fasttext could not be imported (only needed to run fasttext model).')
 
 from abc import ABC, abstractmethod
 from sklearn.externals import joblib
@@ -136,7 +136,7 @@ class FastTextModel(Model):
         return True
 
     def load_model(self, file):
-        self.bilinear_model = fastText.load_model(file + '.bin')
+        self.bilinear_model = fasttext.load_model(file + '.bin')
         print('Loaded bilinear model from ',file)
 
     def save_model(self, file):
@@ -187,7 +187,7 @@ class FastTextModel(Model):
 
         self.log.info('Created dataset of %d entries' % len(best_tactic))
 
-        self.bilinear_model = fastText.train_supervised(
+        self.bilinear_model = fasttext.train_supervised(
             input=train_file.name,
             epoch=self.config['models']['fast_text']['epoch'],
             lr=self.config['models']['fast_text']['lr'],
