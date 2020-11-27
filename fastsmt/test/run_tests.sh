@@ -1,3 +1,4 @@
+#!/bin/sh
 rm -f test/test_outcome.txt
 ./cpp/goal_runner "AndThen(With(simplify;blast_distinct=True;elim_and=False;flat=False;hoist_mul=False;local_ctx=True;pull_cheap_ite=True;push_ite_bv=True;som=True),Tactic(qfnra-nlsat),Tactic(sat),With(propagate-values;push_ite_bv=True),Tactic(max-bv-sharing),With(aig;aig_per_assertion=False),Tactic(smt))" test/bench_7150.smt2 test/out.smt2 | head -1 | awk '{ print $1 }' >> test/test_outcome.txt
 ./cpp/goal_runner "AndThen(With(simplify;blast_distinct=True;elim_and=False;flat=False;hoist_mul=True;local_ctx=False;pull_cheap_ite=True;push_ite_bv=True;som=True),Tactic(purify-arith),With(aig;aig_per_assertion=False),Tactic(elim-uncnstr),Tactic(smt))" test/bench_9849.smt2 test/out.smt2 | head -1 | awk '{ print $1 }' >> test/test_outcome.txt
