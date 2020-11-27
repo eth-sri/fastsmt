@@ -27,7 +27,7 @@ except ImportError:
     logging.warn('fasttext could not be imported (only needed to run fasttext model).')
 
 from abc import ABC, abstractmethod
-from sklearn.externals import joblib
+import joblib
 
 from fastsmt.synthesis.search.dataset import *
 from fastsmt.utils.strategy import StrategyEnumerator
